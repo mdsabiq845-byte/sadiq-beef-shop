@@ -48,9 +48,24 @@ const STATUS_COLORS = ["#e8913a","#3a7bd5","#e05050","#4caf50"];
 // ─────────────────────────────────────────────────────────────────────
 //  STORAGE
 // ─────────────────────────────────────────────────────────────────────
-const K = { orders:"bs-orders", products:"bs-products", shopOpen:"bs-open", config:"bs-config" };
-const sg = async (k,sh=true) => { try { const r=await window.storage.get(k,sh); return r?JSON.parse(r.value):null; } catch { return null; }};
-const ss = async (k,v,sh=true) => { try { await window.storage.set(k,JSON.stringify(v),sh); } catch {} };
+const sg = async (k) => {
+  try {
+    const data = localStorage.getItem(k);
+    return data ? JSON.parse(data) : null;
+  } catch (e) {
+    console.log("GET ERROR:", e);
+    return null;
+  }
+};
+
+const ss = async (k, v) => {
+  try {
+    localStorage.setItem(k, JSON.stringify(v));
+    console.log("SAVED:", k);
+  } catch (e) {
+    console.log("SAVE ERROR:", e);
+  }
+};
 
 // ─────────────────────────────────────────────────────────────────────
 //  SECRET ADMIN URL CHECK
