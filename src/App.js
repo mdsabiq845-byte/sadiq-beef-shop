@@ -48,6 +48,8 @@ const STATUS_COLORS = ["#e8913a","#3a7bd5","#e05050","#4caf50"];
 // ─────────────────────────────────────────────────────────────────────
 //  STORAGE
 // ─────────────────────────────────────────────────────────────────────
+const K = { orders:"bs-orders", products:"bs-products", shopOpen:"bs-open", config:"bs-config" };
+
 const sg = async (k) => {
   try {
     const data = localStorage.getItem(k);
